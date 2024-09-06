@@ -1,0 +1,24 @@
+import { ApiProperty } from '@nestjs/swagger';
+import { Status, PaymentType } from '@prisma/client';
+
+export class CreateRentDto {
+  name: string;
+  phoneNumber: string;
+  startDate: Date;
+  endDate: Date;
+  @ApiProperty({ enum: ['PLEDGE', 'PENDING', 'PAID', 'DUTY'] })
+  status: Status;
+  guarantee?: string;
+  amount: number;
+  @ApiProperty({ enum: ['CASH', 'CARD'] })
+  paymentType: PaymentType;
+  @ApiProperty({
+    type: 'array',
+    items: { type: 'number' },
+    minItems: 3,
+    maxItems: 3,
+    example: [40, 30, 30],
+  })
+  incomePersentage: number[];
+  carId: number;
+}
