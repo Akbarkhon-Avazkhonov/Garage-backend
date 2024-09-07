@@ -29,6 +29,7 @@ export class AdminGuard implements CanActivate {
         payload.name !== process.env.ADMIN_NAME ||
         payload.name !== process.env.OPERATOR_NAME
       ) {
+        console.log(payload.name, process.env.OPERATOR_NAME);
         console.log('Unauthorized');
         throw new UnauthorizedException();
       }
