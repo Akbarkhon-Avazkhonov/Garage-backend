@@ -27,7 +27,7 @@ let AdminGuard = class AdminGuard {
                 secret: process.env.JWT_SECRET,
             });
             console.log(payload);
-            if (payload.name !== process.env.ADMIN_NAME ||
+            if (payload.name !== process.env.ADMIN_NAME &&
                 payload.name !== process.env.OPERATOR_NAME) {
                 console.log(payload.name, process.env.OPERATOR_NAME);
                 console.log('Unauthorized');
