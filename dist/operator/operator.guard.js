@@ -27,9 +27,6 @@ let OperatorGuard = class OperatorGuard {
                 secret: process.env.JWT_SECRET,
             });
             request['admin'] = payload;
-            if (payload.name !== process.env.OPERATOR_NAME) {
-                throw new common_1.UnauthorizedException();
-            }
         }
         catch {
             throw new common_1.UnauthorizedException();
