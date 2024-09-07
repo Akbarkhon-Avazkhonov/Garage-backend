@@ -57,6 +57,26 @@ let RentService = class RentService {
             where: { id: +id },
         });
     }
+    async search(search) {
+        return await this.prisma.rent.findMany({
+            where: {
+                OR: [
+                    {
+                        name: {
+                            contains: search,
+                            mode: 'insensitive',
+                        },
+                    },
+                    {
+                        phoneNumber: {
+                            contains: search,
+                            mode: 'insensitive',
+                        },
+                    },
+                ],
+            },
+        });
+    }
     async update(id, updateRentDto) {
         return await this.prisma.rent.update({
             where: { id: id },

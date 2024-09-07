@@ -68,7 +68,7 @@ export declare class RentController {
         partnerIncome: number;
         carId: number;
     }>;
-    search(id: string, updateRentDto: UpdateRentDto): Promise<{
+    search(search: string): Promise<{
         id: number;
         name: string;
         phoneNumber: string;
@@ -83,7 +83,7 @@ export declare class RentController {
         investorIncome: number;
         partnerIncome: number;
         carId: number;
-    }>;
+    }[]>;
     update(id: string, updateRentDto: UpdateRentDto): Promise<{
         id: number;
         name: string;

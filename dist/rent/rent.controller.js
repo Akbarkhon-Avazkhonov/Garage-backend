@@ -35,8 +35,8 @@ let RentController = class RentController {
     findOne(id) {
         return this.rentService.findOne(+id);
     }
-    search(id, updateRentDto) {
-        return this.rentService.update(+id, updateRentDto);
+    search(search) {
+        return this.rentService.search(search);
     }
     update(id, updateRentDto) {
         return this.rentService.update(+id, updateRentDto);
@@ -93,9 +93,8 @@ __decorate([
     (0, common_1.Get)('search/:search'),
     openapi.ApiResponse({ status: 200 }),
     __param(0, (0, common_1.Param)('search')),
-    __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_rent_dto_1.UpdateRentDto]),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], RentController.prototype, "search", null);
 __decorate([

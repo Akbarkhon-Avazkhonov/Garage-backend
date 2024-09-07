@@ -68,6 +68,22 @@ export declare class RentService {
         partnerIncome: number;
         carId: number;
     }>;
+    search(search: string): Promise<{
+        id: number;
+        name: string;
+        phoneNumber: string;
+        startDate: Date;
+        endDate: Date;
+        status: import(".prisma/client").$Enums.Status;
+        guarantee: string | null;
+        amount: number;
+        paymentType: import(".prisma/client").$Enums.PaymentType;
+        incomePersentage: number[];
+        adminIncome: number;
+        investorIncome: number;
+        partnerIncome: number;
+        carId: number;
+    }[]>;
     update(id: number, updateRentDto: UpdateRentDto): Promise<{
         id: number;
         name: string;
