@@ -24,13 +24,11 @@ export class AdminGuard implements CanActivate {
 
       // 💡 We're assigning the payload to the request object here
       // so that we can access it in our route handlers
-      console.log(payload);
+
       if (
         payload.name !== process.env.ADMIN_NAME &&
         payload.name !== process.env.OPERATOR_NAME
       ) {
-        console.log(payload.name, process.env.OPERATOR_NAME);
-        console.log('Unauthorized');
         throw new UnauthorizedException();
       }
     } catch {

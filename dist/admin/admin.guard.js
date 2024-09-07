@@ -26,11 +26,8 @@ let AdminGuard = class AdminGuard {
             const payload = await this.jwtService.verifyAsync(token, {
                 secret: process.env.JWT_SECRET,
             });
-            console.log(payload);
             if (payload.name !== process.env.ADMIN_NAME &&
                 payload.name !== process.env.OPERATOR_NAME) {
-                console.log(payload.name, process.env.OPERATOR_NAME);
-                console.log('Unauthorized');
                 throw new common_1.UnauthorizedException();
             }
         }
