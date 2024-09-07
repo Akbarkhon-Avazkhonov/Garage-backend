@@ -12,7 +12,7 @@ export class OperatorService {
     if (!(await bcrypt.compare(password, process.env.OPERATOR_PASSWORD))) {
       throw new HttpException('Wrong password', HttpStatus.UNAUTHORIZED);
     }
-    const payload = { sub: 1, name: name };
+    const payload = { sub: 1, name: process.env.ADMIN_NAME };
     return {
       access_token: await this.jwtService.signAsync(payload),
       name: process.env.ADMIN_NAME,
