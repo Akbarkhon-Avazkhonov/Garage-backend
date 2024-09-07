@@ -49,8 +49,8 @@ export class RentController {
   }
 
   @Get('search/:search')
-  search(@Param('search') id: string, @Body() updateRentDto: UpdateRentDto) {
-    return this.rentService.update(+id, updateRentDto);
+  search(@Param('search') search: string) {
+    return this.rentService.search(search);
   }
 
   @Patch('byId/:id')
