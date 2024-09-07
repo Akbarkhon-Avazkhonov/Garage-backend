@@ -19,6 +19,8 @@ const rent_service_1 = require("./rent.service");
 const create_rent_dto_1 = require("./dto/create-rent.dto");
 const update_rent_dto_1 = require("./dto/update-rent.dto");
 const swagger_1 = require("@nestjs/swagger");
+const swagger_2 = require("@nestjs/swagger");
+const admin_guard_1 = require("../admin/admin.guard");
 let RentController = class RentController {
     constructor(rentService) {
         this.rentService = rentService;
@@ -115,6 +117,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], RentController.prototype, "remove", null);
 exports.RentController = RentController = __decorate([
+    (0, common_1.UseGuards)(admin_guard_1.AdminGuard),
+    (0, swagger_2.ApiBearerAuth)(),
     (0, swagger_1.ApiTags)('Rent'),
     (0, common_1.Controller)('rent'),
     __metadata("design:paramtypes", [rent_service_1.RentService])

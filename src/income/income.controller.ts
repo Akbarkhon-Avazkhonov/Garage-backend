@@ -6,12 +6,17 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { IncomeService } from './income.service';
 import { CreateIncomeDto } from './dto/create-income.dto';
 import { UpdateIncomeDto } from './dto/update-income.dto';
-import { ApiTags } from '@nestjs/swagger';
 
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { AdminGuard } from 'src/admin/admin.guard';
+
+@UseGuards(AdminGuard)
+@ApiBearerAuth()
 @ApiTags('Income')
 @Controller('income')
 export class IncomeController {

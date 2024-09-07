@@ -19,6 +19,7 @@ const income_service_1 = require("./income.service");
 const create_income_dto_1 = require("./dto/create-income.dto");
 const update_income_dto_1 = require("./dto/update-income.dto");
 const swagger_1 = require("@nestjs/swagger");
+const admin_guard_1 = require("../admin/admin.guard");
 let IncomeController = class IncomeController {
     constructor(incomeService) {
         this.incomeService = incomeService;
@@ -81,6 +82,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], IncomeController.prototype, "remove", null);
 exports.IncomeController = IncomeController = __decorate([
+    (0, common_1.UseGuards)(admin_guard_1.AdminGuard),
+    (0, swagger_1.ApiBearerAuth)(),
     (0, swagger_1.ApiTags)('Income'),
     (0, common_1.Controller)('income'),
     __metadata("design:paramtypes", [income_service_1.IncomeService])

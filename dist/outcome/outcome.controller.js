@@ -19,6 +19,8 @@ const outcome_service_1 = require("./outcome.service");
 const create_outcome_dto_1 = require("./dto/create-outcome.dto");
 const update_outcome_dto_1 = require("./dto/update-outcome.dto");
 const swagger_1 = require("@nestjs/swagger");
+const swagger_2 = require("@nestjs/swagger");
+const admin_guard_1 = require("../admin/admin.guard");
 let OutcomeController = class OutcomeController {
     constructor(outcomeService) {
         this.outcomeService = outcomeService;
@@ -96,7 +98,9 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], OutcomeController.prototype, "remove", null);
 exports.OutcomeController = OutcomeController = __decorate([
-    (0, swagger_1.ApiTags)('Outcome'),
+    (0, common_1.UseGuards)(admin_guard_1.AdminGuard),
+    (0, swagger_2.ApiBearerAuth)(),
+    (0, swagger_2.ApiTags)('Outcome'),
     (0, common_1.Controller)('outcome'),
     __metadata("design:paramtypes", [outcome_service_1.OutcomeService])
 ], OutcomeController);

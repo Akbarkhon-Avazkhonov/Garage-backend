@@ -1,7 +1,12 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, UseGuards } from '@nestjs/common';
 import { MonitoringService } from './monitoring.service';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
+import { ApiBearerAuth } from '@nestjs/swagger';
+import { AdminGuard } from 'src/admin/admin.guard';
+
+@UseGuards(AdminGuard)
+@ApiBearerAuth()
 @ApiTags('Monitoring')
 @Controller('monitoring')
 export class MonitoringController {

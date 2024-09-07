@@ -19,6 +19,7 @@ const car_service_1 = require("./car.service");
 const create_car_dto_1 = require("./dto/create-car.dto");
 const update_car_dto_1 = require("./dto/update-car.dto");
 const swagger_1 = require("@nestjs/swagger");
+const admin_guard_1 = require("../admin/admin.guard");
 let CarController = class CarController {
     constructor(carService) {
         this.carService = carService;
@@ -81,6 +82,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], CarController.prototype, "remove", null);
 exports.CarController = CarController = __decorate([
+    (0, common_1.UseGuards)(admin_guard_1.AdminGuard),
+    (0, swagger_1.ApiBearerAuth)(),
     (0, swagger_1.ApiTags)('Car'),
     (0, common_1.Controller)('car'),
     __metadata("design:paramtypes", [car_service_1.CarService])

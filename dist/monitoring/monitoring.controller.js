@@ -17,6 +17,8 @@ const openapi = require("@nestjs/swagger");
 const common_1 = require("@nestjs/common");
 const monitoring_service_1 = require("./monitoring.service");
 const swagger_1 = require("@nestjs/swagger");
+const swagger_2 = require("@nestjs/swagger");
+const admin_guard_1 = require("../admin/admin.guard");
 let MonitoringController = class MonitoringController {
     constructor(monitoringService) {
         this.monitoringService = monitoringService;
@@ -73,6 +75,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], MonitoringController.prototype, "findHistoryByMonth", null);
 exports.MonitoringController = MonitoringController = __decorate([
+    (0, common_1.UseGuards)(admin_guard_1.AdminGuard),
+    (0, swagger_2.ApiBearerAuth)(),
     (0, swagger_1.ApiTags)('Monitoring'),
     (0, common_1.Controller)('monitoring'),
     __metadata("design:paramtypes", [monitoring_service_1.MonitoringService])

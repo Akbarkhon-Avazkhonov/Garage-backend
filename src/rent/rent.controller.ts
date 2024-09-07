@@ -6,12 +6,18 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { RentService } from './rent.service';
 import { CreateRentDto } from './dto/create-rent.dto';
 import { UpdateRentDto } from './dto/update-rent.dto';
 import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 
+import { ApiBearerAuth } from '@nestjs/swagger';
+import { AdminGuard } from 'src/admin/admin.guard';
+
+@UseGuards(AdminGuard)
+@ApiBearerAuth()
 @ApiTags('Rent')
 @Controller('rent')
 export class RentController {

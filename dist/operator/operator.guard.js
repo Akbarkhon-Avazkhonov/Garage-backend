@@ -26,8 +26,8 @@ let OperatorGuard = class OperatorGuard {
             const payload = await this.jwtService.verifyAsync(token, {
                 secret: process.env.JWT_SECRET,
             });
-            request['mentor'] = payload;
-            if (payload.name !== process.env.OPERATOR_NAME) {
+            request['admin'] = payload;
+            if (payload.name !== process.env.ADMIN_NAME) {
                 throw new common_1.UnauthorizedException();
             }
         }

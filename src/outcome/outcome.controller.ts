@@ -6,12 +6,18 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { OutcomeService } from './outcome.service';
 import { CreateOutcomeDto } from './dto/create-outcome.dto';
 import { UpdateOutcomeDto } from './dto/update-outcome.dto';
-import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiParam,  } from '@nestjs/swagger';
 
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { AdminGuard } from 'src/admin/admin.guard';
+
+@UseGuards(AdminGuard)
+@ApiBearerAuth()
 @ApiTags('Outcome')
 @Controller('outcome')
 export class OutcomeController {

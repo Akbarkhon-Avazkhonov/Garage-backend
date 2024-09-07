@@ -18,16 +18,13 @@ let OperatorService = class OperatorService {
         this.jwtService = jwtService;
     }
     async login(name, password) {
-        if (name != process.env.OPERATOR_NAME) {
-            throw new common_1.HttpException('User not found', common_1.HttpStatus.NOT_FOUND);
-        }
         if (!(await bcrypt.compare(password, process.env.OPERATOR_PASSWORD))) {
             throw new common_1.HttpException('Wrong password', common_1.HttpStatus.UNAUTHORIZED);
         }
         const payload = { sub: 1, name: name };
         return {
             access_token: await this.jwtService.signAsync(payload),
-            name: name,
+            name: process.env.ADMIN_NAME,
             role: 'operator',
         };
     }
