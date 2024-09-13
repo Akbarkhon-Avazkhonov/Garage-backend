@@ -31,17 +31,22 @@ export class CarController {
     return this.carService.findAll();
   }
 
-  @Get(':id')
+  @Get('free')
+  findFree() {
+    return this.carService.findFree();
+  }
+
+  @Get('findOne/:id')
   findOne(@Param('id') id: string) {
     return this.carService.findOne(+id);
   }
 
-  @Patch(':id')
+  @Patch('findOne/:id')
   update(@Param('id') id: string, @Body() updateCarDto: UpdateCarDto) {
     return this.carService.update(+id, updateCarDto);
   }
 
-  @Delete(':id')
+  @Delete('findOne/:id')
   remove(@Param('id') id: string) {
     return this.carService.remove(+id);
   }

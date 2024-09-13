@@ -55,12 +55,21 @@ export class MonitoringService {
       },
     });
 
+    const DUTY = await this.prisma.rent.aggregate({
+      _sum: {
+        guaranteeAmount: true,
+      },
+      where: {
+        AND: [{ status: 'DUTY' }],
+      },
+    });
     const sum = {
       income: +income._sum.amount,
       rentIncome: +rentIncome._sum.amount,
       totalIncome: +income._sum.amount + rentIncome._sum.amount,
       outcome: +outcome._sum.amount,
       total: income._sum.amount + rentIncome._sum.amount - outcome._sum.amount,
+      DUTY: +DUTY._sum.guaranteeAmount,
     };
 
     return sum;

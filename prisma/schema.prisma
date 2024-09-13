@@ -21,7 +21,6 @@ enum Owner {
 
 enum Status {
   PLEDGE
-  PENDING
   PAID
   DUTY
 }
@@ -44,10 +43,11 @@ model Rent {
   id               Int         @id @default(autoincrement())
   name             String
   phoneNumber      String
-  startDate        DateTime 
+  startDate        DateTime
   endDate          DateTime
   status           Status
-  guarantee        String?
+  guaranteeAmount  Int
+  guaranteeType    PaymentType
   amount           Int
   paymentType      PaymentType
   incomePersentage Int[]

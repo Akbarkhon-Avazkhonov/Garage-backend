@@ -8,7 +8,8 @@ export class CreateRentDto {
   endDate: Date;
   @ApiProperty({ enum: ['PLEDGE', 'PENDING', 'PAID', 'DUTY'] })
   status: Status;
-  guarantee?: string;
+  guaranteeType: PaymentType;
+  guaranteeAmount: number;
   amount: number;
   @ApiProperty({ enum: ['CASH', 'CARD'] })
   paymentType: PaymentType;

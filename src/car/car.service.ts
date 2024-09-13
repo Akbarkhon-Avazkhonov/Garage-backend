@@ -16,6 +16,16 @@ export class CarService {
     return await this.prisma.car.findMany();
   }
 
+  async findFree() {
+    return await this.prisma.car.findMany({
+      where: {
+        Rent: {
+          none: { status: 'PLEDGE' },
+        },
+      },
+    });
+  }
+
   async findOne(id: number) {
     return await this.prisma.car.findUnique({
       where: { id: +id },
