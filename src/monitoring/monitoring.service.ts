@@ -12,6 +12,7 @@ export class MonitoringService {
           { endDate: { gte: new Date(year, month - 1, 1) } },
           { endDate: { lt: new Date(year, month, 1) } },
           { status: 'PAID' },
+          { status: 'DUTY' },
         ],
       },
     });
@@ -27,6 +28,7 @@ export class MonitoringService {
           { endDate: { gte: new Date(year, month - 1, 1) } },
           { endDate: { lt: new Date(year, month, 1) } },
           { status: 'PAID' },
+          { status: 'DUTY' },
         ],
       },
     });
@@ -55,7 +57,7 @@ export class MonitoringService {
       },
     });
 
-    const DUTY = await this.prisma.rent.aggregate({
+    const duty = await this.prisma.rent.aggregate({
       _sum: {
         guaranteeAmount: true,
       },
@@ -69,7 +71,7 @@ export class MonitoringService {
       totalIncome: +income._sum.amount + rentIncome._sum.amount,
       outcome: +outcome._sum.amount,
       total: income._sum.amount + rentIncome._sum.amount - outcome._sum.amount,
-      DUTY: +DUTY._sum.guaranteeAmount,
+      duty: +duty._sum.guaranteeAmount,
     };
 
     return sum;
@@ -161,6 +163,7 @@ export class MonitoringService {
           { endDate: { gte: startDate } },
           { endDate: { lt: endDate } },
           { status: 'PAID' },
+          { status: 'DUTY' },
         ],
       },
       include: {

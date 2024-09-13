@@ -36,7 +36,7 @@ export class RentService {
   }
 
   async findAll() {
-    return await this.prisma.rent.findMany({ orderBy: { id: 'desc' } });
+    await this.prisma.rent.findMany({ orderBy: { id: 'desc' } });
   }
 
   async findSome(take: number, skip: number) {
