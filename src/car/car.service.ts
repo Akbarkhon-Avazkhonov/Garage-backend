@@ -13,7 +13,9 @@ export class CarService {
   }
 
   async findAll() {
-    return await this.prisma.car.findMany();
+    return await this.prisma.car.findMany({
+      where: { isActive: true },
+    });
   }
 
   async findFree() {
