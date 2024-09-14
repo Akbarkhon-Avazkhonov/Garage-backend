@@ -15,7 +15,7 @@ const swagger_1 = require("@nestjs/swagger");
 const client_1 = require("@prisma/client");
 class CreateRentDto {
     static _OPENAPI_METADATA_FACTORY() {
-        return { name: { required: true, type: () => String }, phoneNumber: { required: true, type: () => String }, startDate: { required: true, type: () => Date }, endDate: { required: true, type: () => Date }, status: { required: true, type: () => Object }, guarantee: { required: false, type: () => String }, amount: { required: true, type: () => Number }, paymentType: { required: true, type: () => Object }, incomePersentage: { required: true, type: () => [Number] }, carId: { required: true, type: () => Number } };
+        return { name: { required: true, type: () => String }, phoneNumber: { required: true, type: () => String }, startDate: { required: true, type: () => Date }, endDate: { required: true, type: () => Date }, status: { required: true, type: () => Object }, guaranteeType: { required: true, type: () => Object }, guaranteeAmount: { required: true, type: () => Number }, amount: { required: true, type: () => Number }, paymentType: { required: true, type: () => Object }, incomePersentage: { required: true, type: () => [Number] }, carId: { required: true, type: () => Number } };
     }
 }
 exports.CreateRentDto = CreateRentDto;

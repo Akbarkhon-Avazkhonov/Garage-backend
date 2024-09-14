@@ -5,7 +5,8 @@ export declare class CreateRentDto {
     startDate: Date;
     endDate: Date;
     status: Status;
-    guarantee?: string;
+    guaranteeType: PaymentType;
+    guaranteeAmount: number;
     amount: number;
     paymentType: PaymentType;
     incomePersentage: number[];

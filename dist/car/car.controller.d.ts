@@ -8,35 +8,48 @@ export declare class CarController {
         id: number;
         model: string;
         carNumber: string;
-        run: number;
+        run: string;
         owner: import(".prisma/client").$Enums.Owner;
+        isActive: boolean;
     }>;
     findAll(): Promise<{
         id: number;
         model: string;
         carNumber: string;
-        run: number;
+        run: string;
         owner: import(".prisma/client").$Enums.Owner;
+        isActive: boolean;
+    }[]>;
+    findFree(): Promise<{
+        id: number;
+        model: string;
+        carNumber: string;
+        run: string;
+        owner: import(".prisma/client").$Enums.Owner;
+        isActive: boolean;
     }[]>;
     findOne(id: string): Promise<{
         id: number;
         model: string;
         carNumber: string;
-        run: number;
+        run: string;
         owner: import(".prisma/client").$Enums.Owner;
+        isActive: boolean;
     }>;
     update(id: string, updateCarDto: UpdateCarDto): Promise<{
         id: number;
         model: string;
         carNumber: string;
-        run: number;
+        run: string;
         owner: import(".prisma/client").$Enums.Owner;
+        isActive: boolean;
     }>;
     remove(id: string): Promise<{
         id: number;
         model: string;
         carNumber: string;
-        run: number;
+        run: string;
         owner: import(".prisma/client").$Enums.Owner;
+        isActive: boolean;
     }>;
 }

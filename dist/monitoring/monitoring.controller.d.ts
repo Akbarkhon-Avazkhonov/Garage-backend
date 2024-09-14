@@ -9,6 +9,7 @@ export declare class MonitoringController {
         totalIncome: number;
         outcome: number;
         total: number;
+        duty: number;
     }>;
     findIncomeByPersentage(): Promise<{
         adminIncome: number;

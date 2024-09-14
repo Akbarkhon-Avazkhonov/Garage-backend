@@ -31,11 +31,12 @@ enum PaymentType {
 }
 
 model Car {
-  id        Int    @id @default(autoincrement())
+  id        Int     @id @default(autoincrement())
   model     String
   carNumber String
-  run       Int
+  run       String
   owner     Owner
+  isActive  Boolean @default(true)
   Rent      Rent[]
 }
 

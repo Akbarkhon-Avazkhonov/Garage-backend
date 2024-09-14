@@ -19,9 +19,16 @@ export class CarService {
   async findFree() {
     return await this.prisma.car.findMany({
       where: {
-        Rent: {
-          none: { status: 'PLEDGE' },
-        },
+        AND: [
+          {
+            Rent: {
+              none: { status: 'PLEDGE' },
+            },
+          },
+          {
+            isActive: true,
+          },
+        ],
       },
     });
   }
@@ -40,8 +47,9 @@ export class CarService {
   }
 
   async remove(id: number) {
-    return await this.prisma.car.delete({
+    return await this.prisma.car.update({
       where: { id: +id },
+      data: { isActive: false },
     });
   }
 }

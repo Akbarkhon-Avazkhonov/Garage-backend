@@ -2,6 +2,6 @@ import { Owner } from '@prisma/client';
 export declare class CreateCarDto {
     model: string;
     carNumber: string;
-    run: number;
+    run: string;
     owner: Owner;
 }

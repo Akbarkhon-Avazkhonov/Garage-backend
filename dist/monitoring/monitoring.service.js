@@ -22,7 +22,7 @@ let MonitoringService = class MonitoringService {
                 AND: [
                     { endDate: { gte: new Date(year, month - 1, 1) } },
                     { endDate: { lt: new Date(year, month, 1) } },
-                    { status: 'PAID' },
+                    { OR: [{ status: 'PAID' }, { status: 'DUTY' }] },
                 ],
             },
         });
@@ -36,7 +36,7 @@ let MonitoringService = class MonitoringService {
                 AND: [
                     { endDate: { gte: new Date(year, month - 1, 1) } },
                     { endDate: { lt: new Date(year, month, 1) } },
-                    { status: 'PAID' },
+                    { OR: [{ status: 'PAID' }, { status: 'DUTY' }] },
                 ],
             },
         });
@@ -62,12 +62,21 @@ let MonitoringService = class MonitoringService {
                 ],
             },
         });
+        const duty = await this.prisma.rent.aggregate({
+            _sum: {
+                guaranteeAmount: true,
+            },
+            where: {
+                AND: [{ status: 'DUTY' }],
+            },
+        });
         const sum = {
             income: +income._sum.amount,
             rentIncome: +rentIncome._sum.amount,
             totalIncome: +income._sum.amount + rentIncome._sum.amount,
             outcome: +outcome._sum.amount,
             total: income._sum.amount + rentIncome._sum.amount - outcome._sum.amount,
+            duty: +duty._sum.guaranteeAmount,
         };
         return sum;
     }
@@ -150,7 +159,7 @@ let MonitoringService = class MonitoringService {
                 AND: [
                     { endDate: { gte: startDate } },
                     { endDate: { lt: endDate } },
-                    { status: 'PAID' },
+                    { OR: [{ status: 'PAID' }, { status: 'DUTY' }] },
                 ],
             },
             include: {

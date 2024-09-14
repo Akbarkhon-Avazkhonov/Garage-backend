@@ -15,7 +15,7 @@ const swagger_1 = require("@nestjs/swagger");
 const client_1 = require("@prisma/client");
 class CreateCarDto {
     static _OPENAPI_METADATA_FACTORY() {
-        return { model: { required: true, type: () => String }, carNumber: { required: true, type: () => String }, run: { required: true, type: () => Number }, owner: { required: true, type: () => Object } };
+        return { model: { required: true, type: () => String }, carNumber: { required: true, type: () => String }, run: { required: true, type: () => String }, owner: { required: true, type: () => Object } };
     }
 }
 exports.CreateCarDto = CreateCarDto;

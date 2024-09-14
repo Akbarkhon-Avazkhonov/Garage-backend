@@ -24,6 +24,22 @@ let CarService = class CarService {
     async findAll() {
         return await this.prisma.car.findMany();
     }
+    async findFree() {
+        return await this.prisma.car.findMany({
+            where: {
+                AND: [
+                    {
+                        Rent: {
+                            none: { status: 'PLEDGE' },
+                        },
+                    },
+                    {
+                        isActive: true,
+                    },
+                ],
+            },
+        });
+    }
     async findOne(id) {
         return await this.prisma.car.findUnique({
             where: { id: +id },
@@ -36,8 +52,9 @@ let CarService = class CarService {
         });
     }
     async remove(id) {
-        return await this.prisma.car.delete({
+        return await this.prisma.car.update({
             where: { id: +id },
+            data: { isActive: false },
         });
     }
 };

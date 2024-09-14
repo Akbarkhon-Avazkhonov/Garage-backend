@@ -30,6 +30,9 @@ let CarController = class CarController {
     findAll() {
         return this.carService.findAll();
     }
+    findFree() {
+        return this.carService.findFree();
+    }
     findOne(id) {
         return this.carService.findOne(+id);
     }
@@ -57,7 +60,14 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], CarController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Get)(':id'),
+    (0, common_1.Get)('free'),
+    openapi.ApiResponse({ status: 200 }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], CarController.prototype, "findFree", null);
+__decorate([
+    (0, common_1.Get)('findOne/:id'),
     openapi.ApiResponse({ status: 200 }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -65,7 +75,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], CarController.prototype, "findOne", null);
 __decorate([
-    (0, common_1.Patch)(':id'),
+    (0, common_1.Patch)('findOne/:id'),
     openapi.ApiResponse({ status: 200 }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
@@ -74,7 +84,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], CarController.prototype, "update", null);
 __decorate([
-    (0, common_1.Delete)(':id'),
+    (0, common_1.Delete)('findOne/:id'),
     openapi.ApiResponse({ status: 200 }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),

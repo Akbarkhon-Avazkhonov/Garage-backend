@@ -11,8 +11,7 @@ export class MonitoringService {
         AND: [
           { endDate: { gte: new Date(year, month - 1, 1) } },
           { endDate: { lt: new Date(year, month, 1) } },
-          { status: 'PAID' },
-          { status: 'DUTY' },
+          { OR: [{ status: 'PAID' }, { status: 'DUTY' }] },
         ],
       },
     });
@@ -27,8 +26,7 @@ export class MonitoringService {
         AND: [
           { endDate: { gte: new Date(year, month - 1, 1) } },
           { endDate: { lt: new Date(year, month, 1) } },
-          { status: 'PAID' },
-          { status: 'DUTY' },
+          { OR: [{ status: 'PAID' }, { status: 'DUTY' }] },
         ],
       },
     });
@@ -162,8 +160,7 @@ export class MonitoringService {
         AND: [
           { endDate: { gte: startDate } },
           { endDate: { lt: endDate } },
-          { status: 'PAID' },
-          { status: 'DUTY' },
+          { OR: [{ status: 'PAID' }, { status: 'DUTY' }] },
         ],
       },
       include: {

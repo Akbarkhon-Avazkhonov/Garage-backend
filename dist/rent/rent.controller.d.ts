@@ -11,7 +11,8 @@ export declare class RentController {
         startDate: Date;
         endDate: Date;
         status: import(".prisma/client").$Enums.Status;
-        guarantee: string | null;
+        guaranteeAmount: number;
+        guaranteeType: import(".prisma/client").$Enums.PaymentType;
         amount: number;
         paymentType: import(".prisma/client").$Enums.PaymentType;
         incomePersentage: number[];
@@ -27,7 +28,8 @@ export declare class RentController {
         startDate: Date;
         endDate: Date;
         status: import(".prisma/client").$Enums.Status;
-        guarantee: string | null;
+        guaranteeAmount: number;
+        guaranteeType: import(".prisma/client").$Enums.PaymentType;
         amount: number;
         paymentType: import(".prisma/client").$Enums.PaymentType;
         incomePersentage: number[];
@@ -43,7 +45,8 @@ export declare class RentController {
         startDate: Date;
         endDate: Date;
         status: import(".prisma/client").$Enums.Status;
-        guarantee: string | null;
+        guaranteeAmount: number;
+        guaranteeType: import(".prisma/client").$Enums.PaymentType;
         amount: number;
         paymentType: import(".prisma/client").$Enums.PaymentType;
         incomePersentage: number[];
@@ -59,7 +62,8 @@ export declare class RentController {
         startDate: Date;
         endDate: Date;
         status: import(".prisma/client").$Enums.Status;
-        guarantee: string | null;
+        guaranteeAmount: number;
+        guaranteeType: import(".prisma/client").$Enums.PaymentType;
         amount: number;
         paymentType: import(".prisma/client").$Enums.PaymentType;
         incomePersentage: number[];
@@ -75,7 +79,8 @@ export declare class RentController {
         startDate: Date;
         endDate: Date;
         status: import(".prisma/client").$Enums.Status;
-        guarantee: string | null;
+        guaranteeAmount: number;
+        guaranteeType: import(".prisma/client").$Enums.PaymentType;
         amount: number;
         paymentType: import(".prisma/client").$Enums.PaymentType;
         incomePersentage: number[];
@@ -91,7 +96,8 @@ export declare class RentController {
         startDate: Date;
         endDate: Date;
         status: import(".prisma/client").$Enums.Status;
-        guarantee: string | null;
+        guaranteeAmount: number;
+        guaranteeType: import(".prisma/client").$Enums.PaymentType;
         amount: number;
         paymentType: import(".prisma/client").$Enums.PaymentType;
         incomePersentage: number[];
@@ -107,7 +113,8 @@ export declare class RentController {
         startDate: Date;
         endDate: Date;
         status: import(".prisma/client").$Enums.Status;
-        guarantee: string | null;
+        guaranteeAmount: number;
+        guaranteeType: import(".prisma/client").$Enums.PaymentType;
         amount: number;
         paymentType: import(".prisma/client").$Enums.PaymentType;
         incomePersentage: number[];
