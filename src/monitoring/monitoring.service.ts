@@ -63,6 +63,22 @@ export class MonitoringService {
         AND: [{ status: 'DUTY' }],
       },
     });
+    const cash_duty = await this.prisma.rent.aggregate({
+      _sum: {
+        guaranteeAmount: true,
+      },
+      where: {
+        AND: [{ status: 'DUTY' }, { guaranteeType: 'CASH' }],
+      },
+    });
+    const card_duty = await this.prisma.rent.aggregate({
+      _sum: {
+        guaranteeAmount: true,
+      },
+      where: {
+        AND: [{ status: 'DUTY' }, { guaranteeType: 'CARD' }],
+      },
+    });
     const sum = {
       income: +income._sum.amount,
       rentIncome: +rentIncome._sum.amount,
@@ -70,6 +86,8 @@ export class MonitoringService {
       outcome: +outcome._sum.amount,
       total: income._sum.amount + rentIncome._sum.amount - outcome._sum.amount,
       duty: +duty._sum.guaranteeAmount,
+      cash_duty: +cash_duty._sum.guaranteeAmount,
+      card_duty: +card_duty._sum.guaranteeAmount,
     };
 
     return sum;
