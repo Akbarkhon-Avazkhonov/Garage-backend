@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { Owner } from '@prisma/client';
 import { PrismaService } from 'src/prisma.service';
 
 @Injectable()
@@ -79,6 +78,22 @@ export class MonitoringService {
         AND: [{ status: 'DUTY' }, { guaranteeType: 'CARD' }],
       },
     });
+    const cash_pledge = await this.prisma.rent.aggregate({
+      _sum: {
+        guaranteeAmount: true,
+      },
+      where: {
+        AND: [{ status: 'PLEDGE' }, { guaranteeType: 'CASH' }],
+      },
+    });
+    const card_pledge = await this.prisma.rent.aggregate({
+      _sum: {
+        guaranteeAmount: true,
+      },
+      where: {
+        AND: [{ status: 'PLEDGE' }, { guaranteeType: 'CARD' }],
+      },
+    });
     const sum = {
       income: +income._sum.amount,
       rentIncome: +rentIncome._sum.amount,
@@ -88,6 +103,8 @@ export class MonitoringService {
       duty: +duty._sum.guaranteeAmount,
       cash_duty: +cash_duty._sum.guaranteeAmount,
       card_duty: +card_duty._sum.guaranteeAmount,
+      cash_pledge: +cash_pledge._sum.guaranteeAmount,
+      card_pledge: +card_pledge._sum.guaranteeAmount,
     };
 
     return sum;
