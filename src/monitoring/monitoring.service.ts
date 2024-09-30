@@ -8,8 +8,8 @@ export class MonitoringService {
     return await this.prisma.rent.count({
       where: {
         AND: [
-          { endDate: { gte: new Date(year, month - 1, 1) } },
-          { endDate: { lt: new Date(year, month, 1) } },
+          { startDate: { gte: new Date(year, month - 1, 1) } },
+          { startDate: { lt: new Date(year, month, 1) } },
           { OR: [{ status: 'PAID' }, { status: 'DUTY' }] },
         ],
       },
@@ -35,7 +35,7 @@ export class MonitoringService {
         amount: true,
       },
       where: {
-        endDate: {
+        startDate: {
           gte: new Date(year, month - 1, 1), // Дата окончания аренды >= начало текущего месяца
           lt: new Date(year, month, 1), // Дата окончания аренды < начало следующего месяца
         },
