@@ -30,6 +30,8 @@ export class MonitoringService {
       },
     });
 
+    console.log('rentIncome', rentIncome);
+
     const income = await this.prisma.income.aggregate({
       _sum: {
         amount: true,
