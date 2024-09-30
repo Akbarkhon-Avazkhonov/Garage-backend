@@ -17,20 +17,33 @@ export class MonitoringService {
   }
 
   async findIncomeByMonth(year: number, month: number) {
+    // const rentIncome = await this.prisma.rent.aggregate({
+    //   _sum: {
+    //     amount: true,
+    //   },
+    //   where: {
+    //     AND: [
+    //       { endDate: { gte: new Date(year, month - 1, 1) } },
+    //       { endDate: { lt: new Date(year, month, 1) } },
+    //       { OR: [{ status: 'PAID' }, { status: 'DUTY' }] },
+    //     ],
+    //   },
+    // });
+
     const rentIncome = await this.prisma.rent.aggregate({
       _sum: {
         amount: true,
       },
       where: {
-        AND: [
-          { endDate: { gte: new Date(year, month - 1, 1) } },
-          { endDate: { lt: new Date(year, month, 1) } },
-          { OR: [{ status: 'PAID' }, { status: 'DUTY' }] },
-        ],
+        endDate: {
+          gte: new Date(year, month - 1, 1), // Дата окончания аренды >= начало текущего месяца
+          lt: new Date(year, month, 1), // Дата окончания аренды < начало следующего месяца
+        },
+        status: {
+          in: ['PAID', 'DUTY'], // Статус должен быть 'PAID' или 'DUTY'
+        },
       },
     });
-
-    console.log('rentIncome', rentIncome);
 
     const income = await this.prisma.income.aggregate({
       _sum: {
